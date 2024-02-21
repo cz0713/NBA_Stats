@@ -7,17 +7,11 @@ import json
 from pprint import pprint
 from openpyxl import Workbook
 
-stats_url = "https://stats.nba.com/stats/leagueLeaders?LeagueID=00&PerMode=PerGame&Scope=S&Season=2023-24&SeasonType=Regular%20Season&StatCategory=PTS"
-
-
+stats_url = "https://stats.nba.com/stats/leagueLeaders?LeagueID=00&PerMode=PerGame&Scope=S&Season=2012-13&SeasonType=Regular%20Season&StatCategory=PTS"
 r = requests.get(url=stats_url).json()
-# pretty_r = json.dumps(r, indent=1)
-# pprint(r)
 table_headers = r['resultSet']['headers']
 data = r['resultSet']['rowSet']
-
 df1 = pd.DataFrame(data, columns=table_headers)
-# print(df1.to_string())
 
 df_cols = ['Year', 'Season Type'] + table_headers
 
